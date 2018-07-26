@@ -1,0 +1,36 @@
+<div role="contentinfo" class="custom-grid-pagination ui-grid-pager-panel">
+   <div role="navigation" class="ui-grid-pager-container">
+      <div role="menubar" class="ui-grid-pager-control">
+         <button type="button" role="menuitem" class="ui-grid-pager-first" ng-click="pagination.firstPage()" ng-disabled="currentPageNumber == 1">
+            <div class="first-triangle">
+               <div class="first-bar"></div>
+            </div>
+         </button>
+         <button type="button" role="menuitem" class="ui-grid-pager-previous" ng-click="pagination.previousPage()" ng-disabled="currentPageNumber == 1">
+            <div class="first-triangle prev-triangle"></div>
+         </button>
+         <input type="number" class="ui-grid-pager-control-input" ng-model="currentPageNumber" ng-change="validatePaginationInput(currentPageNumber)" min="1" max="pagination.getTotalPages()"> <span class="ui-grid-pager-max-pages-number" ng-show="pagination.getTotalPages() > 0"><abbr>/</abbr> 1</span> 
+         <button type="button" role="menuitem" class="ui-grid-pager-next" ng-click="pagination.nextPage()" ng-disabled="currentPageNumber == pagination.getTotalPages(totalRecords)">
+            <div class="last-triangle next-triangle"></div>
+         </button>
+         <button type="button" role="menuitem" class="ui-grid-pager-last" ng-click="pagination.lastPage()" ng-disabled="currentPageNumber == pagination.getTotalPages(totalRecords)">
+            <div class="last-triangle">
+               <div class="last-bar"></div>
+            </div>
+         </button>
+      </div>
+      <div class="ui-grid-pager-row-count-picker" ng-show="paginationPageSizes && paginationPageSizes.length > 0 && pagination.getTotalPages(totalRecords) > 1">
+         <select ng-model="pagination.pageSize" ng-options="o as o for o in paginationPageSizes" ng-change="currentPageNumber = 1;pagination.getUpdatedData()">
+            <!-- <option value="0" selected="selected" label="20">20</option>
+            <option value="1" label="50">50</option>
+            <option value="2" label="100">100</option>
+            <option value="3" label="500">500</option>
+            <option value="4" label="1000">1000</option> -->
+         </select>
+         <span class="ui-grid-pager-row-count-label m_left5">items per page</span>
+      </div>
+   </div>
+   <div class="ui-grid-pager-count-container font_size12">
+      <div class="ui-grid-pager-count"><span ng-show="totalRecords > 0">{{1 + (currentPageNumber-1) * pagination.pageSize}} - {{(totalRecords < (currentPageNumber * pagination.pageSize)) ? totalRecords : (currentPageNumber * pagination.pageSize)}} items</span></div>
+   </div>
+</div>

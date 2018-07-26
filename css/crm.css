@@ -1,0 +1,12 @@
+/************************************************* Global CSS Reset ***********************************************/
+
+body {font-family: Trebuchet MS, Arial, Verdana, sans-serif;overflow-y: hidden;}
+strong,.strong {font-weight: bold;}
+input[type="text"], select, textarea {border: 1px solid #a7a9ab;box-shadow: none;}
+
+.crm-activity-log-grid {
+    text-align: center;
+    font-size: 12px;
+    max-height: 605px;
+    font-family: Verdana, Arial, sans-serif;
+}

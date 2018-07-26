@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html data-ng-app="ActivityLogModule">
+	<head>
+		<meta charset="UTF-8">
+	<!-- 	<title>FreshDirect CRM</title> -->
+		<!-- <base href="/"> -->
+		
+		<title>Activity Log</title>			 
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	    <link rel="stylesheet" href="css/ag-grid.min.css">   
+		<link rel="stylesheet" href="css/ui-grid.min.css">		
+		<link rel="stylesheet" href="css/crm.css">
+		
+		<!--[if lt IE 10]>
+        <script src="frameworks/placeholders/placeholders.min.js">
+        </script>
+        <![endif]-->
+        
+		<script src="frameworks/angular.min.js"></script>
+		<script src="frameworks/angular-sanitize.min.js"></script>
+		<script src="frameworks/ag-grid.min.js"></script>
+	
+	<!-- Application files -->	
+				
+		<script src="activitylogcontroller.js"></script>
+		<script src="activityloggriddirective.js"></script>
+		<script src="gridcustompaginationdirective.js"></script>
+		
+	</head>
+	<body> 
+
+		<div ng-controller="ActivityLogController">
+
+			<div ng-init="getLogDetails()" class="activity_log_pagination">
+				 
+				  <!--<div class="activity-pg-container p_right5">Page: 
+						<span class="activity-pg-pages">
+							<a ng-repeat="page in pagesArray track by $index" class="activity-pg-page" ng-click="(page != currentPageNumber) && jumpToPage(page)" ng-class="{'activity-pg-current-page':page == currentPageNumber}">{{page}}</a>
+						</span>
+					</div> -->
+				<activityloggrid grid-data="activitylist.data.activityLogDetailsModelList"></activityloggrid> 
+				<grid-custom-pagination-directive 
+					total-records = "count" 
+					get-new-data = "jumpToPage(currentPageNumber,paginationPageSize)"  
+					current-page-number = "currentPageNumber"
+					pagination-page-size = "25" 
+					pagination-page-sizes = "paginationPageSizes" 
+					></grid-custom-pagination-directive><!-- pagination-page-sizes is optional array -->
+				<div class="text_center m_top10 common_font12"
+					ng-show="isActivityListFound">
+					<strong>No records found.</strong>
+				</div>
+			</div>
+
+</div>
